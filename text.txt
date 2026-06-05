@@ -1,0 +1,44 @@
+That giant white vertical box in the middle with the massive empty side margins happens because your content doesn't have a layout width specified, or it's wrapped in a container that is strictly limiting its size.
+
+When you see text or elements stuck in a narrow vertical strip down the center of the screen like that, it's usually caused by one of two things in your CSS/styling.
+
+---
+
+## The Two Likely Culprits
+
+### 1. A Max-Width Restriction (Most Common)
+
+If you copied the starter homepage code I shared earlier, or if your Vite template has global CSS rules active, there is likely a property called `max-width` restricting your content.
+
+* **What it looks like in code:** `maxWidth: '800px'` or `max-width: 60ch` in a CSS file.
+* **Why it does this:** It tells the browser, *"No matter how wide the monitor is, never let the text spread wider than this pixel count."* Combined with a center alignment (`margin: 0 auto`), it pushes all your content into a central pillar and leaves the left and right sides completely blank.
+
+### 2. Standard CSS Reset Defaults
+
+Vite templates ship with a file called `src/index.css` or `src/App.css`. By default, Vite injects centering flexbox rules into the `#root` or `body` elements to make their tiny default counter template look nice. When you delete their template and start writing your own code, those hidden global styles stick around and squish your new elements.
+
+---
+
+## How to Fix It
+
+### If you want your dashboard to take up the whole screen:
+
+You need to tell your main container tag to use 100% of the viewport width.
+
+1. Open `src/App.jsx`.
+2. Look at your outermost wrapper tag (whether it's a `<div>` or a `<main>`).
+3. If it has inline styling, change or add `width: '100vw'` (100% of viewport width) and remove any `maxWidth` properties.
+
+```jsx
+// Change your top wrapper to something like this:
+<div style={{ width: '100vw', minHeight: '100vh', padding: '20px', boxSizing: 'border-box' }}>
+  {/* Your code here will now span across the entire browser window */}
+</div>
+
+```
+
+### If you want to wipe out Vite's hidden default styles:
+
+If your code looks fine but it's *still* forcing that central column, open up **`src/index.css`** and **`src/App.css`**, select everything inside them, and delete it entirely.
+
+Wiping those out gives you a completely blank slate canvas, allowing your dashboard to stretch freely across the screen from edge to edge—which is exactly what you'll want when you start rendering wide quantum probability graphs!
