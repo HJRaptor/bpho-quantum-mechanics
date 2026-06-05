@@ -9,6 +9,7 @@ import Task1 from './pages/task1.jsx';
 import Task2 from './pages/task2.jsx';
 import Task3 from './pages/task3.jsx';
 import Task4 from './pages/task4.jsx';
+import Task7 from './pages/task7.jsx';
 
 
 // shadcdn ui components
@@ -35,6 +36,7 @@ export default function App() {
       <Route path="/task2" element={<Task2 />} />
       <Route path="/task3" element={<Task3 />} />
       <Route path="/task4" element={<Task4 />} />
+      <Route path="/task7" element={<Task7 />} />
     </Routes>
   );
 }
