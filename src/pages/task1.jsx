@@ -136,6 +136,10 @@ export default function Task1() {
                         <Link to="/task4" className="text-gray-600 hover:text-blue-600 transition-colors">
                             Task 4
                         </Link>
+                        <Link to="/task5" className="text-gray-600 hover:text-blue-600 transition-colors">
+                            Task 5
+                        </Link>
+
 
                         <Link to="/task7" className="text-gray-600 hover:text-blue-600 transition-colors">
                             Task 7
