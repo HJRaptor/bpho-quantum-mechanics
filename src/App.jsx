@@ -1,35 +1,35 @@
 import React from 'react';
-import { Button } from "@/components/ui/button";
+
 import { Link, Route, Routes } from 'react-router-dom';
+
+
+//pages for each tasks and their paths
 import Homepage from './pages/homepage.jsx';
 import Task1 from './pages/task1.jsx';
+import Task2 from './pages/task2.jsx';
+
+// shadcdn ui components
+import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+
+
+
 
 
 export default function App() {
-
-
   return (
-  <Routes>
-    <Route
-      path="/"
-      element={
-        <main>
-          <title>App</title>
-          <h1>BPhO 2026 Computational Challenge</h1>
-          <div>
-            <h1>BPHO1</h1>
-            <Link to="/homepage">
-              <Button>Go to Homepage</Button>
-            </Link>
-            <Link to="/task1">
-              <Button>Go to Task 1</Button>
-            </Link>
-          </div>
-        </main>
-      }
-    />
-    <Route path="/homepage" element={<Homepage />} />
-    <Route path="/task1" element={<Task1 />} />
-  </Routes>
-);
+    <Routes>
+      {/* to reference in other files by path */}
+      <Route path="/" element={<Homepage />} />
+      <Route path="/task1" element={<Task1 />} />
+      <Route path="/task2" element={<Task2 />} />
+    </Routes>
+  );
 }

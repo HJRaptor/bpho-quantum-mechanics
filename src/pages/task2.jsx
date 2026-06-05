@@ -1,12 +1,10 @@
-import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
+import { Link, useLocation } from 'react-router-dom';
 
-export default function Homepage() {
-  return (
-
-    <>
-
-    <nav className="bg-white">
+export default function Navbar() {
+    const location = useLocation();
+    
+    return (
+        <nav className="bg-white">
             <div className="container mx-auto px-4 py-3">
                 <div className="flex justify-center gap-8 items-center">
                     {/* Logo */}
@@ -50,18 +48,5 @@ export default function Homepage() {
                 </div>
             </div>
         </nav>
-
-
-
-
-    <main>
-      <h1>BPhO 2026 Computational Challenge</h1>
-      <div>
-      </div>
-    </main>
-
-    </>
-
-    
-  );
+    );
 }
