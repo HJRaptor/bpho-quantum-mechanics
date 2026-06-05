@@ -18,9 +18,9 @@ export default function Task2() {
                 <div className="flex justify-center gap-8 items-center">
                     {/* Logo / Home */}
                     <Link to="/" className="text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
-                        Home
+                        ℏome
+                        
                     </Link>
-
                     {/* Navigation Links */}
                     <Link to="/task1" className="text-gray-600 hover:text-blue-600 transition-colors">
                         Task 1
