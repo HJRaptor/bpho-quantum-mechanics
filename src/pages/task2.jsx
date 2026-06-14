@@ -69,7 +69,6 @@ export default function Task2() {
         };
     };
 
-    // Helper math/physics functions extracted out of the loop for performance
     function ball_displacement(x1, y1, x2, y2) {
         const dx = x2 - x1;
         const dy = y2 - y1;
@@ -110,6 +109,7 @@ export default function Task2() {
         const layout = {
             autosize: true,
             margin: { l: 20, r: 20, t: 50, b: 20 },
+            title: { text: "Brownian Motion Simulation :  t = 0.0 ps" }, // 👈 Default Placeholder Title
             xaxis: { range: [0, initialData.a], fixedrange: true, showticklabels: false, showgrid: false, zeroline: false },
             yaxis: { range: [0, initialData.a], fixedrange: true, showticklabels: false, showgrid: false, zeroline: false },
             showlegend: false,
@@ -126,7 +126,6 @@ export default function Task2() {
             { x: [], y: [], mode: 'markers', marker: { color: 'red', size: 6 } }             
         ], layout, { responsive: true, displayModeBar: false });
 
-        // Initial paint
         const initialCircleX = initialData.xcOffset.map(val => val + initialData.X);
         const initialCircleY = initialData.ycOffset.map(val => val + initialData.Y);
         Plotly.update(plotRef.current, {
@@ -137,21 +136,18 @@ export default function Task2() {
         return () => cancelAnimationFrame(animationRef.current);
     }, []);
 
-    // 2. Continuous Loop Engine (Read static current state tracking definitions smoothly)
     const tick = () => {
         const sim = simRef.current;
         if (!sim) return;
 
-        // Strict validation: stop loop completely if time has reached or exceeded max limits
         if (sim.t >= sim.tmax) {
             setIsRunning(false);
             return;
         }
 
         for (let step = 0; step < 4; step++) { 
-            // FIX: If a sub-step is going to push us over tmax, break out immediately
             if (sim.t + sim.dt > sim.tmax) {
-                sim.t = sim.tmax; // Clamp exactly to 200.0
+                sim.t = sim.tmax; 
                 break;
             }
 
@@ -212,7 +208,6 @@ export default function Task2() {
             cancelAnimationFrame(animationRef.current);
             setIsRunning(false);
         } else {
-            // Ensure we aren't trying to run an already completed simulation
             if (simRef.current && simRef.current.t < simRef.current.tmax) {
                 setIsRunning(true);
                 animationRef.current = requestAnimationFrame(tick);
@@ -224,32 +219,38 @@ export default function Task2() {
         cancelAnimationFrame(animationRef.current);
         setIsRunning(false);
 
-        // Generate brand new simulation dataset properties
         const freshData = initSimulation();
         simRef.current = freshData;
 
         const initialCircleX = freshData.xcOffset.map(val => val + freshData.X);
         const initialCircleY = freshData.ycOffset.map(val => val + freshData.Y);
 
-        // Instantly force UI paint update to absolute zero frame bounds
+        // Explicitly maintain the layout configuration on reset so the title stays visible
+        const currentLayout = {
+            autosize: true,
+            margin: { l: 20, r: 20, t: 50, b: 20 },
+            title: { text: "Brownian Motion Simulation :  t = 0.0 ps" },
+            xaxis: { range: [0, freshData.a], fixedrange: true, showticklabels: false, showgrid: false, zeroline: false },
+            yaxis: { range: [0, freshData.a], fixedrange: true, showticklabels: false, showgrid: false, zeroline: false },
+            showlegend: false,
+            shapes: [{
+                type: 'rect', x0: 0, y0: 0, x1: freshData.a, y1: freshData.a,
+                line: { color: 'black', width: 3 }
+            }]
+        };
+
         Plotly.update(plotRef.current, {
             x: [freshData.x, initialCircleX, freshData.XX, [freshData.X]],
             y: [freshData.y, initialCircleY, freshData.YY, [freshData.Y]]
-        });
-
-        Plotly.relayout(plotRef.current, {
-            title: { text: `Brownian Motion Simulation :  t = 0.0 ps` }
-        });
+        }, currentLayout);
     };
 
     return (
         <div className="w-full flex flex-col justify-start items-start p-6 gap-4">
-            {/* Graph Node */}
             <div className="w-full max-w-[600px] aspect-square flex-shrink-0">
                 <div ref={plotRef} className="w-full h-full" id="myplot" />
             </div>
 
-            {/* Sub-Graph Row Button Array Placement */}
             <div className="flex flex-row items-center gap-3 w-full max-w-[600px]">
                 <Button onClick={generatePlot} className="rounded-md">
                     {isRunning ? "Stop simulation" : "Start simulation"}
