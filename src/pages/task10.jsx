@@ -3,7 +3,9 @@ import Plotly from 'plotly.js-dist';
 
 export default function Task10() {
 
-
+    return (
+        <></>
+    );
 
     
 }
