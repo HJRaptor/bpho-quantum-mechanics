@@ -130,7 +130,7 @@ export default function Task8() {
                     y: [classicalP, quantumP],
                     type: 'bar',
                     marker: {
-                        color: ['#3b82f6', '#ef4444'] // Blue and Red matching standard styling
+                        color: ['#3b82f6', '#ef4444']
                     },
                     text: [
                         `${(classicalP * 100).toFixed(1)}% (${classicalP.toFixed(3)})`,

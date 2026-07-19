@@ -11,6 +11,7 @@ export default function Task4() {
     //constants
     const h = 6.63e-34;
     const e = 1.6e-19;
+    const c = 3e8
 
     //visible light frequencies
 
@@ -131,6 +132,37 @@ export default function Task4() {
         graph_ev(1);
     }, []);
        
+    // implementing photoelectric demo here
+
+    
+
+    let lamda = 500e-9
+
+    let energy = (h * c) /lamda
+
+    //work func in ev
+    let work_func = 4.3
+
+
+    function calc_current(){
+
+
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
