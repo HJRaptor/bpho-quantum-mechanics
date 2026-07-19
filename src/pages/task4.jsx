@@ -136,18 +136,7 @@ export default function Task4() {
 
     
 
-    let lamda = 500e-9
 
-    let energy = (h * c) /lamda
-
-    //work func in ev
-    let work_func = 4.3
-
-
-    function calc_current(){
-
-
-    }
 
     
 
