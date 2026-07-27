@@ -14,9 +14,9 @@ export default function Task3() {
 
     return (
         <>    
-
     <body>
         <img src={image1} alt="MATLAB Line Plot" width="600"></img>
+        <hr className="my-8 border-gray-200" />
         <img src={image2} alt="MATLAB Line Plot" width="600"></img>
     </body>
         </>
