@@ -8,7 +8,7 @@ export default function Task2() {
     const animationRef = useRef(null);
     
     const [isRunning, setIsRunning] = useState(false);
-
+    //--
     // 1. Centralized Initialization Function
     const initSimulation = () => {
         const N = 1000;
