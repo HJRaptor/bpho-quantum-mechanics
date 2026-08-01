@@ -7,9 +7,9 @@ export default function Task8() {
     const [theta, setTheta] = useState(0);
     const [phi, setPhi] = useState(0);
 
-    const plotRefA = useRef(null);
-    const plotRefB = useRef(null);
-    const plotRefC = useRef(null);
+    const plotA = useRef(null);
+    const plotB = useRef(null);
+    const plotC = useRef(null);
 
     
 
@@ -57,7 +57,7 @@ export default function Task8() {
         //norm = 1
 
 
-        if (plotRefA.current){
+        if  (plotA.current){
             const theta_r = theta * Math.PI / 180
             const xa1 = Math.sin(theta_r);
             const ya1 = Math.cos(theta_r);
@@ -83,7 +83,7 @@ export default function Task8() {
             ];
 
 
-            Plotly.newPlot(plotRefA.current, tracesA, {
+            Plotly.newPlot (plotA.current, tracesA, {
                 ...layoutConfig,
                 title: 'Detector A (θ)'
             },config);
@@ -91,7 +91,7 @@ export default function Task8() {
 
  
 
-        if (plotRefB.current) {
+        if (plotB.current) {
             const phi_r = phi * Math.PI / 180;
             const xb1 = Math.sin(phi_r);
             const yb1 = Math.cos(phi_r);
@@ -116,13 +116,13 @@ export default function Task8() {
                 }
             ];
 
-            Plotly.newPlot(plotRefB.current, tracesB, {
+            Plotly.newPlot(plotB.current, tracesB, {
                 ...layoutConfig,
                 title: 'Detector B (φ)'
             },config);
         }
 
-        if (plotRefC.current) {
+        if (plotC.current) {
 
             const data = [
                 {
@@ -159,7 +159,7 @@ export default function Task8() {
 
             const config1 = { displayModeBar: false };
 
-            Plotly.newPlot(plotRefC.current, data, layout1, config1);
+            Plotly.newPlot(plotC.current, data, layout1, config1);
 
 
 
@@ -172,51 +172,63 @@ export default function Task8() {
 
     return (
         <>
+            <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
 
-            <div className="p-4 max-w-4xl mx-auto">
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-
-                    <div className="flex flex-col space-y-4">
-                        <div className="slidecontainer flex flex-col">
-                            <label className="font-semibold text-gray-700 mb-1">Detector A</label>
-                            <label className="font-semibold text-gray-700 mb-1">Theta: {theta}°</label>
+                <div className="col-span-2">
+                    <div className='flex items-center justify-center my-6 '>
+                        <div className='text-3xl font-bold'>
+                            Quantum cryptography
+                        </div>
+                    </div>
+                </div>
+                <div className="col-start-1 ">
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className='flex flex-col p-4'>
+                            <label className="font-semibold  mb-1">Detector A</label>
+                            <label className="font-semibold  mb-1">Theta: {theta}°</label>
+                            
                             <input
                                 type="range"
                                 min="-90"
                                 max="90"
                                 value={theta}
-                                className="slider w-full cursor-pointer"
+                                className="slider w-full cursor-pointer mb-1"
                                 id="theta"
                                 onChange={(e) => setTheta(Number(e.target.value))}
                             />
+                            <div className='w-full aspect-square' ref={plotA} ></div>
                         </div>
-                        <div className="w-full aspect-square border rounded-lg bg-gray-50 shadow-sm" ref={plotRefA}></div>
-                    </div>
-
-                    <div className="flex flex-col space-y-4">
-                        <div className="slidecontainer flex flex-col">
-                            <label className="font-semibold text-gray-700 mb-1">Detector B</label>
-                            <label className="font-semibold text-gray-700 mb-1">Phi: {phi}°</label>
+                        <div className='flex flex-col p-4'>
+                            <label className="font-semibold  mb-1">Detector B</label>
+                            <label className="font-semibold  mb-1">Phi: {phi}°</label>
+                            
                             <input
                                 type="range"
                                 min="-90"
                                 max="90"
                                 value={phi}
-                                className="slider w-full cursor-pointer"
+                                className="slider w-full cursor-pointer mb-1"
                                 id="phi"
                                 onChange={(e) => setPhi(Number(e.target.value))}
                             />
+                            <div className='w-full aspect-square' ref={plotB} ></div>
                         </div>
-                        <div className="w-full aspect-square border rounded-lg bg-gray-50 shadow-sm" ref={plotRefB}></div>
+                        <p>....</p>
                     </div>
                     
 
 
                 </div>
-                <div className="w-full aspect-square border rounded-lg bg-gray-50 shadow-sm" ref={plotRefC}></div>
+                <div className="col-start-2 gap-4">
+                    <div className='w-full aspect-square max-h-[80vh] p-4' ref={plotC} ></div>
+                    {/* <p>
+                        .....
+                    </p> */}
+                </div>
             </div>
+
+
+            
         </>
     );
 
