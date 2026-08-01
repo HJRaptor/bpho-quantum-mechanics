@@ -118,7 +118,7 @@ export default function Task1() {
         <div className="basis-1/2 flex flex-col items-center justify-center p-4">
             
             {/* graph */}
-            <div className='w-full max-w-[80vh] aspect-1/1' id="myplot" ></div>
+            <div className='w-full max-w-[80vh] aspect-square ' id="myplot" ></div>
             
                 {/* buttons */}
 
