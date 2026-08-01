@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Plotly from 'plotly.js-dist';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 
 export default function Task4() {
 
+    const plotA = useRef(null);
 
     //constants
     const h = 6.63e-34;
@@ -28,6 +29,8 @@ export default function Task4() {
        
         //function to plot graph
         function graph_ev (z){
+
+            if (!plotA.current) return;
 
             z = z-1
 
@@ -122,7 +125,7 @@ export default function Task4() {
             }
 
 
-            Plotly.newPlot('myplot', traces, layout, config);
+            Plotly.newPlot(plotA.current, traces, layout, config);
 
 
         }
@@ -157,27 +160,47 @@ export default function Task4() {
 
     return (
         <>
-        <div className='flex flex-auto flex-row mt-4'>
+        <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
 
-            <div className="w-64 p-4">
-                <h4 className='mb-1 font-semibold'>Metal </h4>
-                <select defaultValue="1" onChange={(z) => graph_ev(z.target.value)} id="options" className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-700 shadow-sm focus:outline-none focus:ring-0 ">
-                    <option value="" disabled selected>Select a metal</option>
-                    <option value="1">Silver</option>
-                    <option value="2">Aluminium</option>
-                    <option value="3">Gold</option>
-                    <option value="4">Copper</option>
-                    <option value="5">Tin</option>
-                    <option value="6">Lead</option>
-                    <option value="7">Tungsten</option>
-                    <option value="8">Nickel</option>
-                    <option value="9">Sodium</option>
-                </select>
-            </div>
-            
-            <div className='w-full max-w-[80vh] aspect-1/1' id="myplot" ></div>
-        
+                <div className="col-span-2">
+                    <div className='flex items-center justify-center my-6 '>
+                        <div className='text-3xl font-bold'>
+                            The Photoelectric Effect
+                        </div>
+                    </div>
+                </div>
+                <div className="col-start-1">
+                    <div className="flex flex-col gap-2 mb-4">
+                    <label className='mb-1 text-xl font-semibold mx-1'>Metal : </label>
+                    <select defaultValue="1" onChange={(z) => graph_ev(z.target.value)} id="options" className="w-64 bg-white border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-0 ">
+                        <option value="" disabled selected>Select a metal</option>
+                        <option value="1">Silver</option>
+                        <option value="2">Aluminium</option>
+                        <option value="3">Gold</option>
+                        <option value="4">Copper</option>
+                        <option value="5">Tin</option>
+                        <option value="6">Lead</option>
+                        <option value="7">Tungsten</option>
+                        <option value="8">Nickel</option>
+                        <option value="9">Sodium</option>
+                    </select>
+                    </div>
+                    <div className='w-full max-w-[72vh] aspect-square' ref={plotA}></div>
+
+                </div>
+                <div className="col-start-2 flex flex-col gap-4">
+
+                    <p>
+                        The photoelectric effect describes the emission of electrons from the surface of a metal caused by electromagnetic radiation. It was first explained by Albert Einstein in 1905, which led to him winning the Nobel Prize in 1921.....
+
+                    </p>
+                </div>
         </div>
+
+
+
+                
+
 
         </>
 

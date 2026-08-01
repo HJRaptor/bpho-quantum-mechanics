@@ -123,20 +123,20 @@ export default function Task1() {
 
               </div>
               <div className="col-start-2 flex flex-col gap-4">
-                <p>To simulate the random motion of a particle, we use a random function to generate an angle between 0 and 360, and advance the particle in that direction. We trace the path each particle takes to produce the graph on the left.</p>
+                <p>To simulate the random motion of a particle, we use a random function to generate an angle between 0 and 360, and advance the particle in that direction. We trace the path each particle takes to produce the graph on the left.....</p>
                 
                     <div className="grid grid-cols-3 gap-4 items-center">
                         <div className="flex flex-col gap-1">
                             <label className="text-lg font-medium">Step size :</label>
-                            <input type='text' value={s} onChange={(e) => stepsize(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1'></input>
+                            <input type='text' value={s} onChange={(e) => stepsize(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1 text-gray-700'></input>
                         </div>
                         <div className="flex flex-col gap-1">
                             <label className="text-lg font-medium">Number of steps :</label>
-                            <input type='text' value={n} onChange={(e) => numsteps(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1'></input>
+                            <input type='text' value={n} onChange={(e) => numsteps(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1 text-gray-700'></input>
                         </div>
                         <div className="flex flex-col gap-1">
                             <label className="text-lg font-medium">Number of walks :</label>
-                            <input type='text' value={walkNum} onChange={(e) => walknum(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1'></input>
+                            <input type='text' value={walkNum} onChange={(e) => walknum(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1 text-gray-700'></input>
                         </div>
 
                             <button onClick={generatePlot} className='col-span-3 font-semibold text-xl rounded-md bg-[#7a22f5de] text-white p-4 hover:bg-[#7A22F5]'>Generate plot</button>
