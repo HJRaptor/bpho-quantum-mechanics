@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Plotly from 'plotly.js-dist';
-import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"
 
 
 
 export default function Task1() {
 
+    //defining plot
+    const plotA = useRef(null);
 
-
+    //defining variables
+    const [s, stepsize] = useState("1");
+    const [n, numsteps] = useState("1000");
+    const [walkNum, walknum] = useState("20");
 
    // random walk function to generate list of points
   function randomWalk(N, s) {
     let x = [0];
     let y = [0];
 
-    for (let n = 2; n <= N; n++) {
+    for (let n = 1; n <= N; n++) {
       let theta = 2 * Math.PI * Math.random();
 
       let nextX = x[x.length - 1] + s * Math.cos(theta);
@@ -34,6 +36,8 @@ export default function Task1() {
     
     //function for random walk
     function randomWalk1(walk_num,N,s){
+
+        if (!plotA.current) return;
 
         let traces = [];
         let maxCoord = 0;
@@ -86,7 +90,7 @@ export default function Task1() {
             displayModeBar: false
         }
 
-        Plotly.newPlot('myplot', traces, layout, config);
+        Plotly.newPlot(plotA.current, traces, layout, config);
 
     }
     
@@ -97,11 +101,8 @@ export default function Task1() {
 
     //generates the plot
     function generatePlot(){
-        var s = document.getElementById('s').value
-        var N = document.getElementById('N').value
-        var walkNum = document.getElementById('wn').value
-
-        randomWalk1(walkNum, N, s);
+        
+        randomWalk1(walkNum, n, s);
 
     }
 
@@ -109,47 +110,46 @@ export default function Task1() {
 
   return (
     <>
+          <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
+              <div className="col-span-2">
+                <div className='flex items-center justify-center my-6 '>
+                    <div className='text-3xl font-bold'>
+                        Random Walk
+                    </div>
+                </div>
+              </div>
+              <div className="col-start-1">
+                <div className='w-full max-w-[80vh] aspect-square' ref={plotA}></div>
 
-   
-    <div className='flex flex-row w-full min-h-screen'>
-
-        
-
-        <div className="basis-1/2 flex flex-col items-center justify-center p-4">
-            
-            {/* graph */}
-            <div className='w-full max-w-[80vh] aspect-square ' id="myplot" ></div>
-            
-                {/* buttons */}
-
-                  <div className='flex flex-col gap-4 mt-4'>
-                      <div className='flex flex-row gap-4'>
-                          <div className='flex flex-col'>
-                              <h4 className='mb-1 font-semibold'>Step Size :</h4>
-                              <input type='text'  id='s' defaultValue="1" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
-                          </div>
-
-                          <div className='flex flex-col'>
-                              <h4 className='mb-1 font-semibold'>Number of Steps :</h4>
-                              <input type='text'  id='N' defaultValue="1000" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
-                          </div>
-
-                          <div className='flex flex-col'>
-                              <h4 className='mb-1 font-semibold'>Number of Walks :</h4>
-                              <input type='text'  id='wn' defaultValue="20" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
-                          </div>
-
-                          <div className='flex items-end'>
-                              <Button onClick={generatePlot} className='rounded-md '>Generate plot</Button>
-                          </div>
-                      </div>
-                  </div>
+              </div>
+              <div className="col-start-2 flex flex-col gap-4">
+                <p>To simulate the random motion of a particle, we use a random function to generate an angle between 0 and 360, and advance the particle in that direction. We trace the path each particle takes to produce the graph on the left.</p>
                 
+                    <div className="grid grid-cols-3 gap-4 items-center">
+                        <div className="flex flex-col gap-1">
+                            <label className="text-lg font-medium">Step size :</label>
+                            <input type='text' value={s} onChange={(e) => stepsize(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1'></input>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-lg font-medium">Number of steps :</label>
+                            <input type='text' value={n} onChange={(e) => numsteps(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1'></input>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-lg font-medium">Number of walks :</label>
+                            <input type='text' value={walkNum} onChange={(e) => walknum(e.target.value)} className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1'></input>
+                        </div>
+
+                            <button onClick={generatePlot} className='col-span-3 font-semibold text-xl rounded-md bg-[#7a22f5de] text-white p-4 hover:bg-[#7A22F5]'>Generate plot</button>
 
 
-            </div>
+                    </div>
 
-    </div>
+
+
+              </div>
+          </div>
+
+    
     </>
   );
 }
