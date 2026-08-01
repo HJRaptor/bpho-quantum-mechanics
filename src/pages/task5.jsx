@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Plotly from 'plotly.js-dist';
-import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 
 //fix math.pow()
 
 export default function Task5() {
+
+    const plotA = useRef(null);
 
     //constants
     const m_e = 9.11e-31
@@ -49,6 +48,8 @@ export default function Task5() {
     }
 
     for(let m=1; m<=5; m++){
+
+
 
         const colour = Colours[m-1]
         const series_name = names[m-1]
@@ -124,13 +125,36 @@ export default function Task5() {
 
 
     useEffect(() => {
-        Plotly.newPlot('myplot', traces, layout, config);
+
+        if (!plotA.current) return;
+
+        Plotly.newPlot(plotA.current, traces, layout, config);
     }, []);
 
     return (
         <>
-        
-    <div className='w-full max-w-[120vh] aspect-16/10' id="myplot" ></div>
+            <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
+
+                <div className="col-span-2">
+                    <div className='flex items-center justify-center my-6 '>
+                        <div className='text-3xl font-bold'>
+                            Hydrogen emission spectrum and Bohr's model of a hydrogenic atom
+                        </div>
+                    </div>
+                </div>
+                <div className="col-start-1">
+                    <div className='w-full max-w-[120vh] aspect-16/10' ref={plotA} ></div>
+                    
+
+                </div>
+                <div className="col-start-2 flex flex-col gap-4">
+
+                    <p>
+                        .....
+                    </p>
+                </div>
+            </div>
+    
     
         </>
     );
