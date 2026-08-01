@@ -1,26 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+
+    const currentpage = ({ isActive }) => {
+        const baseStyle = "transition-all hover:underline underline-offset-8";
+        return isActive ? `${baseStyle} underline font-semibold` : baseStyle;
+    };
+
+
+
     return (
+        
+        
+        
 
         <nav className=' bg-[#7A22F5] text-white w-full'>
             <div className=' mx-auto px-4 sm:px-6 lg:px-8'>
                 <div className='flex items-center justify-between h-16'>
                     <div className='justify-start text-4xl font-bold'>
-                        <Link to="/" className="transition-colors hover:underline underline-offset-6"> ℏome</Link>
+                        <Link to="/" className="transition-all hover:drop-shadow-sm hover:drop-shadow-white/50"> ℏome</Link>
                     </div>
                     <div className='justify-center grid grid-cols-10 grid-rows-1 gap-4'>
-                        <Link to="/task1" className="transition-colors hover:underline underline-offset-6"> Task 1</Link>
-                        <Link to="/task2" className="transition-colors hover:underline underline-offset-6"> Task 2</Link>
-                        <Link to="/task3" className="transition-colors hover:underline underline-offset-6"> Task 3</Link>
-                        <Link to="/task4" className="transition-colors hover:underline underline-offset-6"> Task 4</Link>
-                        <Link to="/task5" className="transition-colors hover:underline underline-offset-6"> Task 5</Link>
-                        <Link to="/task6" className="transition-colors hover:underline underline-offset-6"> Task 6</Link>
-                        <Link to="/task7" className="transition-colors hover:underline underline-offset-6"> Task 7</Link>
-                        <Link to="/task8" className="transition-colors hover:underline underline-offset-6"> Task 8</Link>
-                        <Link to="/task9" className="transition-colors hover:underline underline-offset-6"> Task 9</Link>
-                        <Link to="/task10" className="transition-colors hover:underline underline-offset-6"> Task 10</Link>
+                        <NavLink to="/task1" className={currentpage}> Task 1</NavLink>
+                        <NavLink to="/task2" className={currentpage}> Task 2</NavLink>
+                        <NavLink to="/task3" className={currentpage}> Task 3</NavLink>
+                        <NavLink to="/task4" className={currentpage}> Task 4</NavLink>
+                        <NavLink to="/task5" className={currentpage}> Task 5</NavLink>
+                        <NavLink to="/task6" className={currentpage}> Task 6</NavLink>
+                        <NavLink to="/task7" className={currentpage}> Task 7</NavLink>
+                        <NavLink to="/task8" className={currentpage}> Task 8</NavLink>
+                        <NavLink to="/task9" className={currentpage}> Task 9</NavLink>
+                        <NavLink to="/task10" className={currentpage}> Task 10</NavLink>
                     </div>
                     <div className='justify-end'>
                         Papers
