@@ -1,18 +1,87 @@
-import React, { useEffect } from 'react';
-import Plotly from 'plotly.js-dist';
+import { useRef } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function Task6() {
 
+    const canvasRef = useRef(null)
 
+    function generatePlot(){
 
+        function brightness(d) {
+            const out = [];
+            for (let i = 0; i<phi.length; i++) {
+                const pathDiff = (2 * d * Math.sin(phi[i] / 2)) / lambda;
+                const phaseDiff = ((pathDiff % 1 + 1) % 1) * 2 * Math.PI;
+                out.push((1 + Math.cos(phaseDiff)) / 8);
+            }
+            return out;
+        }
 
+        const r = 65*10**-3;
+        const h = 6.63*10**-34;
+        const m = 9.11*10**-31;
+        const e = 1.6*10**-19;
+        const rings = 250;
 
-    
+        const V = Number(document.getElementById("voltage").value)*1000;
+
+        const lambda = h/Math.sqrt(2*m*e*V);
+        const x = [];
+        const phi = [];
+
+        for (let i=0; i<rings; i++) {
+            const value = (65e-3)*i/(rings - 1);
+            x.push(value);
+            phi.push(0.5*Math.asin(value/r));
+        }
+
+        const d1 = brightness(0.123e-9);
+        const d2 = brightness(0.213e-9);
+        const totalBrightness = [];
+
+        for (let i=0; i<d1.length; i++) {
+            totalBrightness.push(d1[i]+d2[i]);
+        }
+
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const scale = (canvas.width / 2) / r;
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        for (let i = 0; i < rings; i++) {
+            const radius = x[i] * scale;
+            let green = 0.5 + totalBrightness[i];
+            green = Math.min(Math.max(green, 0), 1);
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = `rgb(0, ${Math.round(green * 255)}, 0)`;
+            ctx.stroke();
+        }
+        ctx.restore();
+    }
+  
+
     return (
         <>
-        
-        
-        
+            <div className='flex flex-row gap-4'>
+                <div className='flex flex-col'>
+                    <h4 className='mb-1 font-semibold'>Enter voltage (kV) :</h4>
+                    <input type='text'  id='voltage' defaultValue="1" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
+                </div>
+                <div className='flex items-end'>
+                    <Button onClick={generatePlot} className='rounded-md '>Generate plot</Button>
+                </div>
+            </div>
+            <canvas
+                ref={canvasRef}
+                width="800"
+                height="800"
+            />
         </>
     );
 
