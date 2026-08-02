@@ -247,11 +247,11 @@ export default function Task2() {
 
     return (
         <div className="w-full flex flex-col justify-start items-start p-6 gap-4">
-            <div className="w-full max-w-[600px] aspect-square flex-shrink-0">
+            <div className="w-full max-w-150 aspect-square shrink-0">
                 <div ref={plotRef} className="w-full h-full" id="myplot" />
             </div>
 
-            <div className="flex flex-row items-center gap-3 w-full max-w-[600px]">
+            <div className="flex flex-row items-center gap-3 w-full max-w-150">
                 <Button onClick={generatePlot} className="rounded-md">
                     {isRunning ? "Stop simulation" : "Start simulation"}
                 </Button>
