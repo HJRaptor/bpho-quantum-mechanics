@@ -12,7 +12,7 @@ export default function Homepage() {
                     BPhO 2026 Computational Challenge
                 </h1>
                 <h1 className='text-8xl font-extrabold tracking-tight mb-6'>Quantum Mechanics</h1>
-                <h1>Abhinav </h1>
+                <h1>Abhinav & Harshit</h1>
             </main>
         </>
     );
