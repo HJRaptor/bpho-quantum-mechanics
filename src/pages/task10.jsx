@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { Button } from "@/components/ui/button";
 import Plotly from 'plotly.js-dist';
 import isosurface00 from '@/assets/IsosurfacePlots/isosurface00.json';
 import isosurface1_1 from '@/assets/IsosurfacePlots/isosurface1-1.json';
@@ -192,27 +191,44 @@ export default function Task10() {
 
     return (
         <>
-        
-        <div className='flex flex-col gap-4 mt-4'>
-            <div className='flex flex-row gap-4'>
-                <div className='flex flex-col'>
-                    <h4 className='mb-1 font-semibold'>Quantum number "n" :</h4>
-                    <input type='text'  id='n' defaultValue="1" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
-                </div>
-                <div className='flex flex-col'>
-                    <h4 className='mb-1 font-semibold'>Quantum number "l" :</h4>
-                    <input type='text'  id='l' defaultValue="0" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
-                </div>
-                <div className='flex flex-col'>
-                    <h4 className='mb-1 font-semibold'>Quantum number "m" :</h4>
-                    <input type='text'  id='m' defaultValue="0" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
-                </div>
-                <div className='flex items-end'>
-                    <Button onClick={generatePlot} className='rounded-md '>Generate plot</Button>
+
+        <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
+              <div className="col-span-2">
+                <div className='flex items-center justify-center my-6 '>
+                    <div className='text-3xl font-bold'>
+                        Hydrogenic Orbitals
+                    </div>
                 </div>
             </div>
+            <div className="col-start-1">
+                <div className='w-full max-w-[80vh] aspect-square' ref={plotRef}></div>
+            </div>
+            <div className="col-start-2 flex flex-col gap-4">
+                <p>A 3d isosurface plot of the probability density of 0.15 for an electron in a hydrogenic atom, given quantum numbers n, l and m. The plot shows the shape of s,p,d,f and g orbitals.</p>
+                <p>Conditions for quantum number inputs:</p>
+                <ul>
+                    <li>n must be greater than or equal to 1</li>
+                    <li>l must be greater than 0 and less than n</li>
+                    <li>m must be less than or equal to the modulus of l</li>
+                    <li>l must be less than 5 (for our model)</li>
+                </ul>
+                    <div className="grid grid-cols-3 gap-4 items-center">
+                        <div className="flex flex-col gap-1">
+                            <label className="text-lg font-medium">Quantum number "n" :</label>
+                            <input type='text'  id='n' defaultValue="1" className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1 text-gray-700'></input>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-lg font-medium">Quantum number "l" :</label>
+                            <input type='text'  id='l' defaultValue="0" className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1 text-gray-700'></input>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-lg font-medium">Quantum number "m" :</label>
+                            <input type='text'  id='m' defaultValue="0" className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1 text-gray-700'></input>
+                        </div>
+                            <button onClick={generatePlot} className='col-span-3 font-semibold text-xl rounded-md bg-[#7a22f5de] text-white p-4 hover:bg-[#7A22F5]'>Generate plot</button>
+                    </div>
+            </div>
         </div>
-        <div ref={plotRef} style={{ width: "100%", height: "700px" }}></div>
 
         </>
     );
