@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Button } from "@/components/ui/button";
+import image1 from '@/assets/ElectronDiffractionGraph.svg';
 
 export default function Task6() {
 
@@ -68,20 +68,37 @@ export default function Task6() {
 
     return (
         <>
-            <div className='flex flex-row gap-4'>
-                <div className='flex flex-col'>
-                    <h4 className='mb-1 font-semibold'>Enter voltage (kV) :</h4>
-                    <input type='text'  id='voltage' defaultValue="1" className='px-2 py-1 border rounded-md focus:outline-none focus:ring-0'></input>
-                </div>
-                <div className='flex items-end'>
-                    <Button onClick={generatePlot} className='rounded-md '>Generate plot</Button>
+
+        <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
+            <div className="col-span-2">
+                <div className='flex items-center justify-center my-6 '>
+                    <div className='text-3xl font-bold'>
+                        Electron Diffraction
+                    </div>
                 </div>
             </div>
-            <canvas
-                ref={canvasRef}
-                width="800"
-                height="800"
-            />
+            <div className="col-start-1">
+                <label className="text-lg font-medium">Enter voltage (kV) :</label>
+                <input type='text'  id='voltage' defaultValue="1" className='border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-100 p-1 text-gray-700'></input>
+                <button onClick={generatePlot} className="font-semibold text-xl rounded-md bg-[#7a22f5de] text-white p-4 hover:bg-[#7A22F5]">Generate plot</button>
+                <div className="h-6"></div>
+                <hr style={{ border: "none", borderTop: "1px solid #ccc" }} />
+                <div className="h-6"></div>
+                <canvas ref={canvasRef} width="800" height="800"/>
+            </div>
+            <div className="col-start-2">
+                <p>Left: a computer model of the electron diffraction experiment, proving de Broglie's Wave-particle duality hypothesis. Produces the interference pattern based on the accelerating voltage (1-5 kV) of the electron gun, and assumes atomic spacing of graphite.</p>
+                <div className="h-6"></div>
+                <p>Below: graph of 1/sqrt(V) against sin(phi/2). Each diffraction order is plotted with a different colour, and each spacing is plotted with a different line style. The gradient of these lines can be used to calculate the atomic spacing of graphite.</p>
+                <div className="h-6"></div>
+                <hr style={{ border: "none", borderTop: "1px solid #ccc" }} />
+                <div className="h-6"></div>
+                <img src={image1} alt="MATLAB Line Plot" width="800"></img>
+                <p>d1 = 1.2336e-10</p>
+                <p>d2 = 2.1319e-10</p>
+            </div>
+        </div>
+
         </>
     );
 
