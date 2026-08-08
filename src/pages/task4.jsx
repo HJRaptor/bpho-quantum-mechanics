@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Plotly from 'plotly.js-dist';
-import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"
 
 
 export default function Task4() {

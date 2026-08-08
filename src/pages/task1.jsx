@@ -123,7 +123,8 @@ export default function Task1() {
 
               </div>
               <div className="col-start-2 flex flex-col gap-4">
-                <p>To simulate the random motion of a particle, we use a random function to generate an angle between 0 and 360, and advance the particle in that direction. We trace the path each particle takes to produce the graph on the left.....</p>
+                <p>A random walk is made of a sequence of random steps. In this simulation, the particle moves distance (step size) in a completely random direction, where θ is chosen uniformly between 0° and 360°. Each particle is modelled as a walk, and the number of steps can be used to adjust the number of iterations to run the simulation for.</p>
+                <p></p>
                 
                     <div className="grid grid-cols-3 gap-4 items-center">
                         <div className="flex flex-col gap-1">
