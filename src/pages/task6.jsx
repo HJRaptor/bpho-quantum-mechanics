@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import image1 from '@/assets/ElectronDiffractionGraph.svg';
 
 export default function Task6() {
@@ -64,6 +64,10 @@ export default function Task6() {
         }
         ctx.restore();
     }
+
+    useEffect(() => {
+        generatePlot();
+    }, []);
   
 
     return (

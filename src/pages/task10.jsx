@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Plotly from 'plotly.js-dist';
 import isosurface00 from '@/assets/IsosurfacePlots/isosurface00.json';
 import isosurface1_1 from '@/assets/IsosurfacePlots/isosurface1-1.json';
@@ -148,18 +148,9 @@ export default function Task10() {
             k: k,
             color: "royalblue",
             opacity: 0.6,
-            flatshading: false,
             lighting: {
                 ambient: 0.4,
-                diffuse: 0.8,
-                specular: 0.5,
-                roughness: 0.4,
-                fresnel: 0.2
-            },
-            lightposition: {
-                x: 100,
-                y: 200,
-                z: 300
+                diffuse: 0.8
             }
         };
 
@@ -186,8 +177,11 @@ export default function Task10() {
 
         Plotly.react(plotRef.current, [mesh], layout, config);
 
-
     }
+
+    useEffect(() => {
+        generatePlot();
+    }, []);
 
     return (
         <>
