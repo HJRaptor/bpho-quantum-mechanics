@@ -32,9 +32,10 @@ const Navbar = () => {
                         <NavLink to="/task8" className={currentpage}> Task 8</NavLink>
                         <NavLink to="/task9" className={currentpage}> Task 9</NavLink>
                         <NavLink to="/task10" className={currentpage}> Task 10</NavLink>
+                        
                     </div>
                     <div className='justify-end'>
-                        Papers
+                        <NavLink to="/papers" className={currentpage}> Papers</NavLink>
                     </div>
 
                 </div>

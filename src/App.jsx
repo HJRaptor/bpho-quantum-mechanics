@@ -15,6 +15,7 @@ import Task7 from './pages/task7.jsx';
 import Task8 from './pages/task8.jsx';
 import Task9 from './pages/task9.jsx';
 import Task10 from './pages/task10.jsx';
+import Papers from './pages/papers.jsx';
 
 
 
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/task8" element={<Task8 />} />
         <Route path="/task9" element={<Task9 />} />
         <Route path="/task10" element={<Task10 />} />
+        <Route path="/papers" element={<Papers />} />
       </Routes>
     </>
   );
