@@ -19,7 +19,7 @@ export default function Task3() {
                 </div>
             </div>
             <div className="col-start-1">
-                <p>Plot of Planck 'Black Body Radiation' Spectrum for the temperatures of 400K, 500K and 600K. It shows how the intensity of electromagnetic radiation emmitted by a perfect black body changes across different wavelengths.</p>
+                <p>Plot of Planck 'Black Body Radiation' Spectrum for the temperatures of 4000K, 5000K and 6000K. It shows how the intensity of electromagnetic radiation emmitted by a perfect black body changes across different wavelengths.</p>
                 <img src={image1} alt="MATLAB Line Plot" width="800"></img>
             </div>
             <div className="col-start-2 flex flex-col gap-4">
