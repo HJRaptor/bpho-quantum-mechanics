@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button"; // shadcn button component
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function Homepage() {
 
@@ -86,14 +85,14 @@ export default function Homepage() {
         }
 
 
-
+        return rgbtohex(r, g, b, factor);
     }
 
 
     //variables 
     const [intensity, setIntensity] = useState(100)//W/m^2   
     const [wavelength, setWavelength] = useState(550)//nm
-    const [cMetal, setSelectedMetal] = useState(default_metal)
+    const [cMetal, setcMetal] = useState(default_metal)
     const [cCurrent, setDisplayedCurrent] = useState(0)//A
 
     
@@ -121,8 +120,8 @@ export default function Homepage() {
         stateRef.current = {
             intensity,
             wavelength,
-            workFunction: getWorkFunction(selectedMetal),
-            metalName: selectedMetal,
+            workFunction: calcwf(cMetal),
+            metalName: cMetal,
         }
     }, [intensity, wavelength, cMetal])
 
@@ -151,6 +150,120 @@ export default function Homepage() {
                 <p className='font-mono font-semibold'>The code for this website can be accessed in the GitHub repository linked below:</p>
                 <p className='font-mono font-semibold'>[insert GitHub link]</p>
             </main>
+
+            <div className='flex flex-col'>
+                <div className='flex'>
+
+                    <canvas ref={canvasRef} width={800} height={600} className='w-full'></canvas>
+
+
+                </div>
+                <div className='flex flex-col p-4'>
+                    <label className="font-semibold  mb-1">Intensity</label>
+
+                    <input
+                        type="range"
+                        min="0"
+                        max="1000"
+                        value={intensity}
+                        className="slider w-full cursor-pointer mb-1"
+                        id="intensity"
+                        onChange={(e) => setIntensity(Number(e.target.value))}
+                    />
+                </div>
+
+
+                <div className='flex flex-col p-4'>
+                    <label className="font-semibold  mb-1">Wavelength </label>
+
+                    <input
+                        type="range"
+                        min="0"
+                        max="1000"
+                        value={wavelength}
+                        className="slider w-full cursor-pointer mb-1"
+                        id="wavelength"
+                        onChange={(e) => setWavelength(Number(e.target.value))}
+                    />
+                </div>
+
+                <div className="flex flex-col gap-2 mb-4">
+                    <label className='mb-1 text-xl font-semibold mx-1'>Metal : </label>
+                    <select
+                        value={metals_names.indexOf(cMetal) + 1}
+                        onChange={(e) => setSelectedMetal(metals_names[parseInt(e.target.value) - 1])}
+                        id="options"
+                        className="w-64 bg-white border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-0"
+                    >
+                        <option value="1">Silver</option>
+                        <option value="2">Aluminium</option>
+                        <option value="3">Gold</option>
+                        <option value="4">Copper</option>
+                        <option value="5">Tin</option>
+                        <option value="6">Lead</option>
+                        <option value="7">Tungsten</option>
+                        <option value="8">Nickel</option>
+                        <option value="9">Sodium</option>
+                    </select>
+                </div>
+
+
+                <div className="flex justify-between">
+                    <span className="text-sm">Photon Energy:</span>
+                    <span className="font-mono text-sm font-bold">
+                        {((H * C) / (wavelength * 1e-9) / e).toFixed(2)} eV
+                    </span>
+                </div>
+
+                <div className="flex justify-between">
+                    <span className="text-sm">Work Function:</span>
+                    <span className="font-mono text-sm font-bold">
+                        {(calcwf(cMetal) / e).toFixed(2)} eV
+                    </span>
+                </div>
+
+
+                <div className="flex justify-between">
+                    <span className="text-sm">Kinetic Energy:</span>
+                    <span className="font-mono text-sm font-bold">
+                        {(() => {
+                            const photonEv = (H * C) / (wavelength * 1e-9) / e;
+                            const workEv = calcwf(cMetal) / e;
+                            const ke = photonEv - workEv;
+                            return ke > 0 ? `${ke.toFixed(2)} eV` : '0 eV';
+                        })()}
+                    </span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                    <span className="text-sm">Emission:</span>
+                    <span
+                        className={`font-mono text-sm font-bold px-2 py-0.5 rounded ${((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
+                                ? 'bg-green-100 text-green-700'
+                                : 'bg-red-100 text-red-700'
+                            }`}
+                    >
+                        {((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
+                            ? 'ACTIVE'
+                            : 'THRESHOLD FAILED'}
+                    </span>
+                </div>
+                
+                <div className="flex justify-between items-center">
+                    <span className="text-sm">Emission:</span>
+                    <span
+                        className={`font-mono text-sm font-bold px-2 py-0.5 rounded ${((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
+                                ? 'bg-green-100 text-green-700'
+                                : 'bg-red-100 text-red-700'
+                            }`}
+                    >
+                        {((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
+                            ? 'ACTIVE'
+                            : 'THRESHOLD FAILED'}
+                    </span>
+                </div>
+
+            </div>
         </>
     );
 }
