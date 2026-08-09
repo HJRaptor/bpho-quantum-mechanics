@@ -20,10 +20,6 @@ import Papers from './pages/papers.jsx';
 
 
 
-// shadcdn ui components
-import { Button } from "@/components/ui/button";
-
-
 
 
 
