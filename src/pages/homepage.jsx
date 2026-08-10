@@ -11,9 +11,23 @@ export default function Homepage() {
     const C = 3 * 10**8
     const e = 1.6 * 10**(-19)
     const metal_plate_area = 1 * 10**(-4)
+    const electronm = 9.109e-31
 
     const default_metal = metals_names[0]
     const default_wf = metals_ev[0]
+
+
+    function getKE() {
+        const photonEv = (H*C)/(wavelength*1e-9)/e
+        const workEv = calcwf(cMetal)/e
+        const ke = photonEv - workEv
+        if (ke > 0) {
+            return `${ke.toFixed(2)} eV`;
+        } else {
+            return '0 eV';
+        }
+
+    }
 
 
     //maps wavelengths of light to a colour code
@@ -96,6 +110,8 @@ export default function Homepage() {
     const [cCurrent, setDisplayedCurrent] = useState(0)//A
 
     
+
+    //returns work function of a given metal
     function calcwf(metal){
         let index = metals_names.indexOf(metal)
         let wf = metals_ev[index] * e
@@ -117,11 +133,70 @@ export default function Homepage() {
 
 
     useEffect(() => {
+
+
+        function physics(intensity, wavelength, workfunc, area = metal_plate_area){
+
+            if (wavelength <= 0) return null
+
+            const wavelengthnm = wavelength*1e-9
+            const photonE = (H*C)/wavelengthnm
+            const photoneV = photonE/e
+            const workfunceV = workfunc / e
+            let above_threshold = false
+            let ke = 0
+            let current = 0
+            //P = IA
+            const power_metal = intensity * area
+
+            //n = Pt/E
+            const photonsps = power_metal/photonE
+            
+            
+            //ke = 0.5mv^2
+            //sqrt(2ke/m) = v
+            let electron_speed = 0
+
+            if (photoneV >= workfunceV){
+                above_threshold = true
+                ke = photonE - workfunc
+                const keEv = ke/e
+                //Q = It
+                //en = I
+                current = photonsps * e
+                //display current in micro/nano amps for better readability, convert here, or just convert in the html display element?
+
+                electron_speed = Math.sqrt((2*ke)/electronm)
+            }else{
+                above_threshold = false
+            }
+            
+            return{
+                wavelengthnm,
+                photonE,
+                photoneV,
+                above_threshold,
+                ke,
+                current,
+                power_metal,
+                photonsps,
+                electron_speed
+
+
+            }
+
+            
+
+
+        }
+
+
+
         stateRef.current = {
             intensity,
             wavelength,
-            workFunction: calcwf(cMetal),
-            metalName: cMetal,
+            wf: calcwf(cMetal),
+            metal: cMetal,
         }
     }, [intensity, wavelength, cMetal])
 
@@ -150,14 +225,19 @@ export default function Homepage() {
                 <p className='font-mono font-semibold'>The code for this website can be accessed in the GitHub repository linked below:</p>
                 <p className='font-mono font-semibold'>[insert GitHub link]</p>
             </main>
+            
 
+
+            
             <div className='flex flex-col'>
+                {/* canvas to hold animation */}
                 <div className='flex'>
 
                     <canvas ref={canvasRef} width={800} height={600} className='w-full'></canvas>
 
 
                 </div>
+                {/* Intensity slider */}
                 <div className='flex flex-col p-4'>
                     <label className="font-semibold  mb-1">Intensity</label>
 
@@ -172,7 +252,7 @@ export default function Homepage() {
                     />
                 </div>
 
-
+                {/* Wavelength slider */}
                 <div className='flex flex-col p-4'>
                     <label className="font-semibold  mb-1">Wavelength </label>
 
@@ -187,13 +267,14 @@ export default function Homepage() {
                     />
                 </div>
 
-                <div className="flex flex-col gap-2 mb-4">
+                {/* Metal selector for the animation */}
+                <div className="flex flex-col gap-2 m-4">
                     <label className='mb-1 text-xl font-semibold mx-1'>Metal : </label>
                     <select
                         value={metals_names.indexOf(cMetal) + 1}
-                        onChange={(e) => setSelectedMetal(metals_names[parseInt(e.target.value) - 1])}
+                        onChange={(e) => setcMetal(metals_names[parseInt(e.target.value) - 1])}
                         id="options"
-                        className="w-64 bg-white border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-0"
+                        className="w-64 bg-white border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-0"
                     >
                         <option value="1">Silver</option>
                         <option value="2">Aluminium</option>
@@ -208,59 +289,25 @@ export default function Homepage() {
                 </div>
 
 
-                <div className="flex justify-between">
-                    <span className="text-sm">Photon Energy:</span>
-                    <span className="font-mono text-sm font-bold">
-                        {((H * C) / (wavelength * 1e-9) / e).toFixed(2)} eV
-                    </span>
-                </div>
 
-                <div className="flex justify-between">
-                    <span className="text-sm">Work Function:</span>
-                    <span className="font-mono text-sm font-bold">
-                        {(calcwf(cMetal) / e).toFixed(2)} eV
-                    </span>
+                {/* Calculate and display photon energy for a given wavelength */}
+                <div className="flex justify-between m-4">
+                    <p className="text-md font-semibold">Photon Energy: {((H * C) / (wavelength * 1e-9) / e).toFixed(2)} eV</p>
                 </div>
 
 
-                <div className="flex justify-between">
-                    <span className="text-sm">Kinetic Energy:</span>
-                    <span className="font-mono text-sm font-bold">
-                        {(() => {
-                            const photonEv = (H * C) / (wavelength * 1e-9) / e;
-                            const workEv = calcwf(cMetal) / e;
-                            const ke = photonEv - workEv;
-                            return ke > 0 ? `${ke.toFixed(2)} eV` : '0 eV';
-                        })()}
-                    </span>
+                {/* Display for the work function */}
+                <div className="flex justify-between m-4">
+                    <p className="text-md font-semibold">Work Function: {(calcwf(cMetal)/e).toFixed(2)} eV</p>
                 </div>
 
-                <div className="flex justify-between items-center">
-                    <span className="text-sm">Emission:</span>
-                    <span
-                        className={`font-mono text-sm font-bold px-2 py-0.5 rounded ${((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
-                                ? 'bg-green-100 text-green-700'
-                                : 'bg-red-100 text-red-700'
-                            }`}
-                    >
-                        {((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
-                            ? 'ACTIVE'
-                            : 'THRESHOLD FAILED'}
-                    </span>
-                </div>
-                
-                <div className="flex justify-between items-center">
-                    <span className="text-sm">Emission:</span>
-                    <span
-                        className={`font-mono text-sm font-bold px-2 py-0.5 rounded ${((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
-                                ? 'bg-green-100 text-green-700'
-                                : 'bg-red-100 text-red-700'
-                            }`}
-                    >
-                        {((H * C) / (wavelength * 1e-9)) >= calcwf(cMetal)
-                            ? 'ACTIVE'
-                            : 'THRESHOLD FAILED'}
-                    </span>
+
+
+
+                <div className="flex justify-between m-4">
+                    <p className="text-md font-semibold">Kinetic Energy: {getKE()}</p>
+
+                        
                 </div>
 
             </div>
