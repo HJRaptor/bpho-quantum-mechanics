@@ -123,7 +123,7 @@ export default function Task1() {
 
               </div>
               <div className="col-start-2 flex flex-col gap-4">
-                <p>A random walk is made of a sequence of random steps. In this simulation, the particle moves distance (step size) in a completely random direction, where θ is chosen uniformly between 0° and 360°. Each particle is modelled as a walk, and the number of steps can be used to adjust the number of iterations to run the simulation for.</p>
+                <p>A random walk is made of a sequence of random steps. In this simulation, the particle moves distance (step size) in a completely random direction, where θ is chosen uniformly between 0° and 360°. Each particle is modelled as a walk, and the number of steps can be used to adjust the number of iterations for which the simulation runs</p>
                 <p></p>
                 
                     <div className="grid grid-cols-3 gap-4 items-center">

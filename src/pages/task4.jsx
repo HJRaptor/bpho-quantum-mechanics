@@ -188,9 +188,16 @@ export default function Task4() {
                 <div className="col-start-2 flex flex-col gap-4">
 
                     <p>
-                        The photoelectric effect describes the emission of electrons from the surface of a metal caused by electromagnetic radiation. It was first explained by Albert Einstein in 1905, which led to him winning the Nobel Prize in 1921.....
+                        The photoelectric effect describes the emission of electrons from the surface of a metal when illuminated by light. First explained by Albert Einstein in 1905, earning him the 1921 Nobel Prize, the photoelectric effect describes light as a stream of photons which undergo one-to-one interactions with electrons on the surface of the metal. Electrons will only be emitted if the energy of the photon is greater than the work function of the metal. A higher frequency of light increases the kinetic energy of emitted electrons and hence the speed. Intensity of the incident light increases the rate of electron emission but only above the threshold frequency, with no electrons emitted below the threshold frequency, regardless of intensity.
 
                     </p>
+
+                    <p>
+                        The graph on the left is a plot of stopping voltage against the frequency of incident light for various metals. The stopping voltage is the minimum voltage required to reduce the photoelectric current to zero. 
+                    </p>
+                    <p>This results in a linear graph with the equation V = (hf- Φ)/e.</p>
+                    <p>From the graph, we can extract 3 key values. The gradient of the graph enables us to determine Plank's constant. The y-intercept can be used to determine the work function of the metal. The x-intercept and the dashed line mark the threshold frequency, the minimum frequency of incident light required for photo electric emission. The dotted section of the line highlights when photoelectric emission will not occur.</p>
+                    <p>The graph also features the frequencies of different colours of light ranging from red to blue to help understand the relative frequencies of light required for photoelectric emission.</p>
                 </div>
         </div>
 
