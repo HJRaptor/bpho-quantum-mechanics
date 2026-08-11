@@ -213,17 +213,19 @@ export default function Task8() {
                             />
                             <div className='w-full aspect-square' ref={plotB} ></div>
                         </div>
-                        <p>....</p>
+                        
                     </div>
                     
-
+                    <p>
+                        Quantum cryptography relies on quantum entanglment and wavefunction collapse to allow secure communication between two parties. In this protocol entangled photon pairs are measured using two independent detectors at theta and phi. If an eavesdropper attempts to intercept a photon, the act of measurement will collapse the photon's wavefunction to that of the detector, altering the state. This interception introduces detectable stastical discrepancies, making it clear an eavesdropper is present.
+                    </p>
+                    <p>
+                        Above is a visual calculator representing the orientations of the 2 detectors. The bar chart on the right compares the theoretical mismatch probability between the classical model and the quantum model for 2 given angles.
+                    </p>
 
                 </div>
                 <div className="col-start-2 gap-4">
                     <div className='w-full aspect-square max-h-[80vh] p-4' ref={plotC} ></div>
-                    {/* <p>
-                        .....
-                    </p> */}
                 </div>
             </div>
 

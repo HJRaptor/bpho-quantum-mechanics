@@ -150,8 +150,22 @@ export default function Task5() {
                 <div className="col-start-2 flex flex-col gap-4">
 
                     <p>
-                        .....
+                        Bohr's model of a hydrogenic atom describes electrons moving around the nucleus of an atom in discrete circular orbits. When an electrons drops from a higher initial energy state (n) to a lower final energy state (m), a photon whose energy is equal to the difference betweeen the 2 levels is emitted.
                     </p>
+                    <p>
+                        This graph plots the emitted photon energy levels against the wavelength for 5 spectral series, which are sets of distinct wavelengths of light emitted or absorbed when an electron changes energy level.
+
+                    </p>
+                    <p>The series are as follows where n is the final energy level which the electrons fall back to : </p>
+                    <ul className='list-disc pl-10 '>
+                        <li>Lyman (n = 1)</li>
+                        <li>Balmer (n = 2)</li>
+                        <li>Paschen (n = 3)</li>
+                        <li>Brackett (n = 4)</li>
+                        <li>Pfund (n = 5)</li>
+
+                    </ul>
+                    <p>For each transition, vertical dashed lines have been plotted at every emitted wavelength with stars to represent the corresponding photon energy.</p>
                 </div>
             </div>
     

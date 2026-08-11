@@ -148,16 +148,23 @@ export default function Task7() {
                         </div>
                     </div>
                 </div>
-                <div className="col-start-1">
-                    <div className='w-full max-w-[68vh] aspect-16/10' ref={plotA} ></div>
-                    <div className='w-full max-w-[64vh] aspect-16/10' ref={plotB} ></div>
-
+                <div className="col-start-1 flex flex-col gap-2">
+                    <div className='w-full max-w-[95vh] aspect-16/10' ref={plotA} ></div>
+                    <p>
+                        This simulation is a plot of probability density against angstroms, and shows the likelihood of finding an electron at a specific position x across the box width which is the Bohr radius (0.592Å).
+                    </p>
+                    <p>
+                        The probability drops to 0 at the walls when x is 0 and 0.529Å, proving that the electron is completely trapped insde the box. When n=1, the electron is most likely to found at the center of the potential well. As energy states increase, new locations where the probability of finding an electron are zero are introduced. All the states have the same peak height, which ensures the total probability of finding the electron somewhere in the well is 100%.
+                    </p>
 
                 </div>
-                <div className="col-start-2 flex flex-col gap-4">
-
+                <div className="col-start-2 flex flex-col gap-2">
+                    <div className='w-full max-w-[95vh] aspect-16/10' ref={plotB} ></div>
                     <p>
-                        .....
+                        The particle in a box model describes a quantum particle, in our case an electron with mass 9.109 x 10^-31kg, confined within an infinitely deep potential well of width L. This model was created in the early development of quantum mechanics, and demonstrates that a microscopic particle trapped within a region of space can't hold arbitary energy values. Its energy levels must be quantized into discrete levels.
+                    </p>
+                    <p>
+                        The graph above plots energy of the electron against its quantum number, the quantized energy level. The blue dots highlight the allowed energy states. Although valid states doesn't exist for non-integer values, a continuous quadratic curve is plotted to illustrate the relationship. The first point is when (n=1) since, the particle can never have zero kinetic energy, explained by the Heisenberg Uncertainty Principle. 
                     </p>
                 </div>
             </div>
