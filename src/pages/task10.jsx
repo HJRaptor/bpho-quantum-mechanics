@@ -188,17 +188,19 @@ export default function Task10() {
 
         <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
               <div className="col-span-2">
+            </div>
+            <div className="col-start-1">
+                <div className='w-full aspect-square' ref={plotRef}></div>
+            </div>
+            <div className="col-start-2 flex flex-col gap-4">
                 <div className='flex items-center justify-center my-6 '>
                     <div className='text-3xl font-bold'>
                         Hydrogenic Orbitals
                     </div>
                 </div>
-            </div>
-            <div className="col-start-1">
-                <div className='w-full max-w-[80vh] aspect-square' ref={plotRef}></div>
-            </div>
-            <div className="col-start-2 flex flex-col gap-4">
-                <p>A 3d isosurface plot of the probability density of 0.15 for an electron in a hydrogenic atom, given quantum numbers n, l and m. The plot shows the shape of s,p,d,f and g orbitals.</p>
+                <p>Hydrogenic atoms are atoms or ions containing only one electron. Examples of hydrogenic atoms are hydrogen (H), ionised helium (He⁺), and doubly ionised lithium (Li²⁺).</p>
+                <p>We can use Schrödinger's equation to find out the probobability distributions of electrons around the nucleus. Schrödinger's equation can only be solved analytically (without using approximations or numerical methods to solve the differential equations) for hydrogenic atoms. Solving the Schrödinger equation for hydrogenic atoms will reveal the shape of electron orbitals.</p>
+                <p>For this task, we created a 3d isosurface plot of the probability density of 0.15 for an electron in a hydrogenic atom, given quantum numbers n, l and m. The plot can show the shape of s, p, d, f and g orbitals.</p>
                 <p>Conditions for quantum number inputs:</p>
                 <ul>
                     <li>n must be greater than or equal to 1</li>

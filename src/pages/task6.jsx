@@ -91,13 +91,18 @@ export default function Task6() {
                 <canvas ref={canvasRef} width="800" height="800"/>
             </div>
             <div className="col-start-2">
-                <p>Left: a computer model of the electron diffraction experiment, proving de Broglie's Wave-particle duality hypothesis. Produces the interference pattern based on the accelerating voltage (1-5 kV) of the electron gun, and assumes atomic spacing of graphite.</p>
+                <p>The electron diffraction experiment demonstrates the wave nature of electrons, proving de Broglie's Wave-particle duality hypothesis. Electrons are directed at a thin graphite crystal, causing the electrons to diffract. A fluorescent screen detects the electrons, producing concentric rings of maxima and minima.</p>
                 <div className="h-6"></div>
-                <p>Below: graph of 1/sqrt(V) against sin(phi/2). Each diffraction order is plotted with a different colour, and each spacing is plotted with a different line style. The gradient of these lines can be used to calculate the atomic spacing of graphite.</p>
+                <p>For a detailed explanation for our approach to task 6, see the task 6 write up on the papers page.</p>
+                <div className="h-6"></div>
+                <p>Left: a computer model of the electron diffraction experiment. Produces the interference pattern based on the accelerating voltage (1-5 kV) of the electron gun, and assumes atomic spacing of graphite.</p>
+                <div className="h-6"></div>
+                <p>Below: graph of 1/sqrt(V) against sin(phi/2). Each diffraction order is plotted with a different colour, and each spacing is plotted with a different line style. This is used to calculate the atomic spacing of graphite.</p>
                 <div className="h-6"></div>
                 <hr style={{ border: "none", borderTop: "1px solid #ccc" }} />
                 <div className="h-6"></div>
                 <img src={image1} alt="MATLAB Line Plot" width="800"></img>
+                <p>Result of calculation of spacing:</p>
                 <p>d1 = 1.2336e-10</p>
                 <p>d2 = 2.1319e-10</p>
             </div>
