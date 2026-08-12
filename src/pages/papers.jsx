@@ -41,6 +41,12 @@ export default function Papers() {
                         </a>
 
                     </li>
+                    <li>
+                        <a href="/Research papers/Quantum_Cryptography.pdf" target="_blank" rel="noopener noreferrer" className='text-2xl hover:text-green-700' >
+                            Quantum Cryptography and the BB84 protocol
+                        </a>
+
+                    </li>
                 </ul>
 
 
