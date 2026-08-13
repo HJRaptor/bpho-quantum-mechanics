@@ -199,7 +199,7 @@ export default function Task10() {
                     </div>
                 </div>
                 <p>Hydrogenic atoms are atoms or ions containing only one electron. Examples of hydrogenic atoms are hydrogen (H), ionised helium (He⁺), and doubly ionised lithium (Li²⁺).</p>
-                <p>We can use Schrödinger's equation to find out the probobability distributions of electrons around the nucleus. Schrödinger's equation can only be solved analytically (without using approximations or numerical methods to solve the differential equations) for hydrogenic atoms. Solving the Schrödinger equation for hydrogenic atoms will reveal the shape of electron orbitals.</p>
+                <p>We can use Schrödinger's equation to find out the probobability distributions of electrons around the nucleus. Schrödinger's equation can only be solved analytically (without using approximations or numerical methods to solve the differential equations) for hydrogenic atoms. Solving the Schrödinger equation for hydrogenic atoms will reveal the shape of electron orbitals. For a more detailed explanation of Hydrogenic Orbitals please find our paper in the papers page.</p>
                 <p>For this task, we created a 3d isosurface plot of the probability density of 0.15 for an electron in a hydrogenic atom, given quantum numbers n, l and m. The plot can show the shape of s, p, d, f and g orbitals.</p>
                 <p>Conditions for quantum number inputs:</p>
                 <ul>
