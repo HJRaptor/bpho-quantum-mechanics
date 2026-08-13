@@ -203,7 +203,7 @@ export default function Task3() {
                     </div>
                         <button onClick={generatePlot} className='col-span-3 font-semibold text-xl rounded-md bg-[#7a22f5de] text-white p-4 hover:bg-[#7A22F5]'>Generate plot</button>
                 </div>
-                <div className='w-full h-[600px]' ref={plotRef}></div>
+                <div className='w-full h-150' ref={plotRef}></div>
             </div>
             <div className="col-start-2 flex flex-col gap-4">
                 <p>Plot of Einstein's model of molar heat capacity of solids (gold, copper, titanium, aluminium, iron, silicon and carbon) against temperature, which shows how heat capacity decreases significantly at low temperatures as atomic vibrations are quantised.</p>

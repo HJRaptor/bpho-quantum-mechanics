@@ -186,11 +186,11 @@ export default function Task9() {
                 </div>
             </div>
             <div className="col-start-1">
-                <div ref={angleRef} className="w-full h-[500px]"/>
+                <div ref={angleRef} className="w-full h-125"/>
                 <div className="h-6"></div>
                 <hr style={{ border: "none", borderTop: "1px solid #ccc" }} />
                 <div className="h-6"></div>
-                <div ref={speedRef} className="w-full h-[500px]"/>
+                <div ref={speedRef} className="w-full h-125"/>
             </div>
             <div className="col-start-2 flex flex-col gap-4">
                 <p>Compton scattering shows that electromagnetic radiation behaves like particles (photons), providing evidence for wave-particle duality.</p>
@@ -217,7 +217,7 @@ export default function Task9() {
                 </div>
                 <hr style={{ border: "none", borderTop: "1px solid #ccc" }} />
                 <div className="h-6"></div>
-                <div ref={fractionalRef} className="w-full h-[500px]"/>
+                <div ref={fractionalRef} className="w-full h-125"/>
             </div>
         </div>
 

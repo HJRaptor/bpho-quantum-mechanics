@@ -224,7 +224,7 @@ export default function Task2() {
         const initialCircleX = freshData.xcOffset.map(val => val + freshData.X);
         const initialCircleY = freshData.ycOffset.map(val => val + freshData.Y);
 
-        // Explicitly maintain the layout configuration on reset so the title stays visible
+        
         const currentLayout = {
             autosize: true,
             margin: { l: 20, r: 20, t: 50, b: 20 },

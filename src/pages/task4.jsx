@@ -132,27 +132,6 @@ export default function Task4() {
         graph_ev(1);
     }, []);
        
-    // implementing photoelectric demo here
-
-    
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     return (
