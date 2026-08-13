@@ -22,6 +22,11 @@ export default function Papers() {
                             Quantum Mechanics
                         </a>
                     </li>
+                    <li>
+                        <a href="/Research papers/Particle_Problem_Sheet.pdf" target="_blank" rel="noopener noreferrer" className='text-2xl hover:text-[#368f8b]'>
+                            Particle
+                        </a>
+                    </li>
                 </ul>
 
 
