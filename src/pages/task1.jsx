@@ -119,7 +119,7 @@ export default function Task1() {
                 </div>
               </div>
               <div className="col-start-1">
-                <div className='w-full max-w-[80vh] aspect-square' ref={plotA}></div>
+                <div className='w-full max-w-[80vh] aspect-square ml-10' ref={plotA}></div>
 
               </div>
               <div className="col-start-2 flex flex-col gap-4">
