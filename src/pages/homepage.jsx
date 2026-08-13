@@ -19,14 +19,14 @@ export default function Homepage() {
                 <div className='my-2'></div>
                 <p className='font-sans font-light text-xl'>As an extension for the challenge, we have written a scientific paper explaining our approach to task 6, as we felt it was most suitable for emulating a scientific experiment and presenting results. We have also written a paper looking into hydrogenic orbitals and the quantum model of the atom. Additionally, we have written papers with detailed solutions for the nuclear, particle and quantum 1 problem sheets.</p>
                 <div className='my-2'></div>
-                <p className='font-sans font-light text-xl'>As part of the competition, we created a short video explaining our work, which can be accessed below:</p>
+                {/* <p className='font-sans font-light text-xl'>As part of the competition, we created a short video explaining our work, which can be accessed below:</p>
                 <div className='my-2'></div>
-                <p className='font-sans font-light text-xl'>[insert video link]</p>
+                <p className='font-sans font-light text-xl'>[insert video link]</p> */}
                 <div className='my-2'></div>
                 
                 <p className='font-sans font-light text-xl'>The code for this website can be accessed in the GitHub repository linked below:</p>
                 <div className='my-2'></div>
-                <p className='font-sans font-light text-xl'>[insert GitHub link]</p>
+                <a className='font-sans font-light text-xl hover:underline' href='https://github.com/HJRaptor/bpho-quantum-mechanics'>BPhO Computational Challenge 2026</a>
             </main>
             
 
