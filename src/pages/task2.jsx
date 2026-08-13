@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Plotly from 'plotly.js-dist';
-import { Button } from "@/components/ui/button";
 
 export default function Task2() {
     const plotRef = useRef(null);
@@ -8,8 +7,8 @@ export default function Task2() {
     const animationRef = useRef(null);
     
     const [isRunning, setIsRunning] = useState(false);
-    //--
-    // 1. Centralized Initialization Function
+
+
     const initSimulation = () => {
         const N = 1000;
         const T = 100;
@@ -109,7 +108,7 @@ export default function Task2() {
         const layout = {
             autosize: true,
             margin: { l: 20, r: 20, t: 50, b: 20 },
-            title: { text: "Brownian Motion Simulation :  t = 0.0 ps" }, // 👈 Default Placeholder Title
+            title: { text: "Brownian Motion Simulation :  t = 0.0 ps" },
             xaxis: { range: [0, initialData.a], fixedrange: true, showticklabels: false, showgrid: false, zeroline: false },
             yaxis: { range: [0, initialData.a], fixedrange: true, showticklabels: false, showgrid: false, zeroline: false },
             showlegend: false,
@@ -246,20 +245,35 @@ export default function Task2() {
     };
 
     return (
-        <div className="w-full flex flex-col justify-start items-start p-6 gap-4">
-            <div className="w-full max-w-150 aspect-square shrink-0">
-                <div ref={plotRef} className="w-full h-full" id="myplot" />
+        <>
+            <div className="grid grid-cols-2 grid-rows-[auto_1fr] gap-4 mx-4">
+
+                <div className="col-span-2">
+                    <div className='flex items-center justify-center my-6 '>
+                        <div className='text-3xl font-bold'>
+                            Brownian motion
+                        </div>
+                    </div>
+                </div>
+                <div className="col-start-1 flex flex-col gap-2">
+                    <div className='w-full max-w-[82vh] aspect-square' ref={plotRef} ></div>
+                </div>
+
+
+                <div className="col-start-2 flex flex-col gap-2">
+                    <p>
+                        Brownian motion describes the random movement of a heavy suspended particle due to collisions with a surrounding gas or fluid. It was first discovered by Robert Brown in 1827 through the random jagged movement of pollen grains inside water, and the mathematical proof was later written by Albert Einstein in 1905.
+                    </p>
+                    <p>
+                        The smaller particles are modelled using a random walk function, as seen in task 1. The motion of the larger red particle is modelled by applying the conservation of momentum in the zero-momentum frame for each collision.
+                    </p>
+                    <div className='m-4'></div>
+                    <button onClick={generatePlot} className='col-span-3 font-semibold text-xl rounded-md bg-[#7a22f5de] text-white p-4 hover:bg-[#7A22F5]'>{isRunning ? "Stop simulation" : "Start simulation"}</button>
+                    <button onClick={resetSimulation} className='col-span-3 font-semibold text-xl rounded-md bg-[#7a22f5de] text-white p-4 hover:bg-[#7A22F5]'>Reset Simulation</button>
+                </div>
             </div>
 
-            <div className="flex flex-row items-center gap-3 w-full max-w-150">
-                <Button onClick={generatePlot} className="rounded-md">
-                    {isRunning ? "Stop simulation" : "Start simulation"}
-                </Button>
-                
-                <Button onClick={resetSimulation} variant="outline" className="rounded-md">
-                    Reset Simulation
-                </Button>
-            </div>
-        </div>
+
+        </>
     );
 }
