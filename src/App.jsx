@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/navbar.jsx';
 
 
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/task10" element={<Task10 />} />
         <Route path="/papers" element={<Papers />} />
       </Routes>
+      <Analytics />
     </>
   );
 }
